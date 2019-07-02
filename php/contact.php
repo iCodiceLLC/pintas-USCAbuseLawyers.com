@@ -216,9 +216,9 @@ function sendContactEmail(){
 
 //    $leadAddress = array("questions@pintas.com");
         // $leadAddress = array("questions@pintas.com");
-        $leadAddress = array("pearl@icodice.com");
+        $leadAddress = array("amar@icodice.com");
 //        $clientAddress = "questions@pintas.com";
-        $clientAddress = "questions@pintas.com";
+        $clientAddress = "amar@icodice.com";
         // Client email
         $clientEmail = new PHPMailer\PHPMailer\PHPMailer();
         $clientEmail->IsSMTP(); // enable SMTP
