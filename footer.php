@@ -81,7 +81,7 @@
 			  },
 			  "image" : "https://StoptheAbuse.com/assets/images/BillLaura.png",
 			  "articleBody" : "If you were in any branch of the military between 2003 and 2015 and suffered hearing loss, you may be entitled to a significant settlement.</SPAN></DIV>\n\t\t\t\t\t<DIV id=\"formSub\" class=\"top-title-text animated fadeInRight text-bold text-white\"><SPAN>3M recently paid millions of dollars to the U.S. military for selling it defective earplugs, leading to hearing loss – including tinnitus, or ringing in the ears – among service members.<BR/><BR/>You have a short amount of time to file a claim, so don’t wait. Fill out the contact form to find out if you qualify.",
-			  "url" : "https://StoptheAbuse.com/"
+			  "url" : "https://USCAbuseLawyers.com/"
 			}
 </script>
 <script>
@@ -147,7 +147,7 @@
                     cache: false,
                     headers: {'cache-control': 'no-cache'},
                     success: function (response) {
-                        // debugger;
+                        debugger;
                         console.log(response);
                         $.unblockUI();
                         window.location.replace("https://USCAbuseLawyers.com/thank-you/");
