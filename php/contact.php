@@ -135,7 +135,7 @@ function sendContactEmail(){
 					<td align="center" style="padding:10px;">
 						<span>
 							<font face="Open Sans,sans-serif" size="5" color="#000">
-                                
+                                <img src="https://uscabuselawyers.com/assets/USCAbuseLawyers.com@300.png" width="400">
 							</font>
 						</span>
 					</td>
@@ -214,11 +214,8 @@ function sendContactEmail(){
             $e_options . "<br />" .
             $e_msg . "<br />", 70 );
 
-//    $leadAddress = array("questions@pintas.com");
-        // $leadAddress = array("questions@pintas.com");
-        $leadAddress = array("amar@icodice.com");
-//        $clientAddress = "questions@pintas.com";
-        $clientAddress = "amar@icodice.com";
+        $leadAddress = array("questions@pintas.com");
+        $clientAddress = "questions@pintas.com";
         // Client email
         $clientEmail = new PHPMailer\PHPMailer\PHPMailer();
         $clientEmail->IsSMTP(); // enable SMTP

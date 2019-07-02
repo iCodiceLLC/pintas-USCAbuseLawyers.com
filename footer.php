@@ -147,7 +147,6 @@
                     cache: false,
                     headers: {'cache-control': 'no-cache'},
                     success: function (response) {
-                        debugger;
                         console.log(response);
                         $.unblockUI();
                         window.location.replace("https://USCAbuseLawyers.com/thank-you/");
