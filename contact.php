@@ -104,8 +104,8 @@
         <textarea placeholder="To the extent that you are comfortable, please tell us about your experience with Dr. Tyndall. We are 100% committed to your privacy and are here to fight for you." required type="text" id="Message" name="message" class="form-control" rows="5"></textarea>
     </div>
     <!-- Google reCAPTCHA box -->
-    <!-- <div class="g-recaptcha" id="recaptcha" data-sitekey="6LfIxasUAAAAAEpFMs0AS9vZnHz5jbVefbScN7mJ" aria-required="true" style="margin:0 0 10px 0; overflow: hidden"></div> -->
-   <div class="g-recaptcha" id="recaptcha" data-sitekey="6LdNqaYUAAAAAOVFiJ2pfqQrQ-1BB-qGhIRcDUqv" aria-required="true" style="margin:0 0 10px 0; overflow: hidden"></div>
+    <div class="g-recaptcha" id="recaptcha" data-sitekey="6LfIxasUAAAAAEpFMs0AS9vZnHz5jbVefbScN7mJ" aria-required="true" style="margin:0 0 10px 0; overflow: hidden"></div>
+   <!-- <div class="g-recaptcha" id="recaptcha" data-sitekey="6LdNqaYUAAAAAOVFiJ2pfqQrQ-1BB-qGhIRcDUqv" aria-required="true" style="margin:0 0 10px 0; overflow: hidden"></div> -->
     <div class="text-center">
         <button class="btn sub-button card-1 v1" type="submit" id="btn-validate" name="submit">SUBMIT YOUR QUESTION</button>
     </div>

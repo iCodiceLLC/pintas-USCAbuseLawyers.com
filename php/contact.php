@@ -56,8 +56,8 @@ function sendContactEmail(){
         $captcha = $_POST["g-recaptcha-response"];
     if (!$captcha)
         echo "emptyCaptcha";
-    // $secret = '6LfIxasUAAAAAMCPVvoFC83DhmvTALERnGmRU8K8';
-   $secret = '6LdNqaYUAAAAACRW16Imqm0nuQzu7lTihiLC6owk';
+    $secret = '6LfIxasUAAAAAMCPVvoFC83DhmvTALERnGmRU8K8';
+//    $secret = '6LdNqaYUAAAAACRW16Imqm0nuQzu7lTihiLC6owk';
     $responseCaptcha = json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secret."&response=".$captcha."&remoteip=".$_SERVER["REMOTE_ADDR"]), true);
 
     if ($responseCaptcha["success"] != false) {
