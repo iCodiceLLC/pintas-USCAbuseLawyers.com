@@ -94,23 +94,23 @@
         </section>
         <!-- Talcum -->
         <?php include "talcum.php"; ?>
-        <!-- Headline -->
-        <?php include "blog.php"; ?>
         <!-- Photo -->
         <section class="services__footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12" style="height: 105px;">
-                        <div class="footer-top">
-                            <p>
-                                No Fees Charged, <br/>
-                                <i>Until We Win Your Case.</i>
-                            </p>
-                        </div>
-                        <div class="footer-bottom">
-                            <a href="#section-form">
-                                Get Your Free Case Evaluation <i class="fa fa-arrow-right"></i>
-                            </a>
+            <div class="container footer-both">
+                <div> 
+                    <div class="row">
+                        <div class="col-12" style="height: 105px;">
+                            <div class="footer-top">
+                                <p>
+                                    No Fees Charged, <br/>
+                                    <i>Until We Win Your Case.</i>
+                                </p>
+                            </div>
+                            <div class="footer-bottom">
+                                <a href="#section-form">
+                                    Get Your Free Case Evaluation <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
