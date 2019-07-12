@@ -135,7 +135,7 @@ function sendContactEmail(){
 					<td align="center" style="padding:10px;">
 						<span>
 							<font face="Open Sans,sans-serif" size="5" color="#000">
-                                
+                                <img src="https://uscabuselawyers.com/assets/USCAbuseLawyers.com@300.png" width="400">
 							</font>
 						</span>
 					</td>
@@ -176,7 +176,7 @@ function sendContactEmail(){
 						<span>
 							<font face="Open Sans,sans-serif">
 								<span style="font-size:28px;">
-									We have received your information and will be in touch with you shortly. You may reach one of our attorneys or paralegals at 800-479-2666 or by email at <a href="mailto:Questions@pintas.com">Questions@pintas.com</a>
+									We have received your information and will be in touch with you shortly. You may reach one of our attorneys or paralegals at 800-657-3555 or by email at <a href="mailto:Questions@pintas.com">Questions@pintas.com</a>
 								</span>
 							</font>
 						</span>
@@ -214,10 +214,7 @@ function sendContactEmail(){
             $e_options . "<br />" .
             $e_msg . "<br />", 70 );
 
-//    $leadAddress = array("questions@pintas.com");
-        // $leadAddress = array("questions@pintas.com");
-        $leadAddress = array("pearl@icodice.com");
-//        $clientAddress = "questions@pintas.com";
+        $leadAddress = array("questions@pintas.com");
         $clientAddress = "questions@pintas.com";
         // Client email
         $clientEmail = new PHPMailer\PHPMailer\PHPMailer();

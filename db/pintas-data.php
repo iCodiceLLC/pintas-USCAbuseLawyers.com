@@ -6,7 +6,7 @@ $PINTAS_LINK = "https://www.pintas.com/";
 // Website Title
 $title = "USCAbuseLawyers";
 // Website Data
-$phone = '800-479-2666';
+$phone = '800-657-3555';
 $email = 'questions@pintas.com';
 
 // Website Meta
