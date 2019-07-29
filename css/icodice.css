@@ -145,7 +145,7 @@ form button, form button.btn.v1, button.btn {font-family: inherit;font-size: inh
     font-weight: 500;
 }
 .services__slider{
-    background: url(../assets/USC.jpeg) no-repeat center center;
+    background: url(../assets/USC.jpg) no-repeat center center;
     width: 100%;
     position: relative;
     max-height: 950px;
