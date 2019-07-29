@@ -176,7 +176,7 @@ function sendContactEmail(){
 						<span>
 							<font face="Open Sans,sans-serif">
 								<span style="font-size:28px;">
-									We have received your information and will be in touch with you shortly. You may reach one of our attorneys or paralegals at 800-479-2666 or by email at <a href="mailto:Questions@pintas.com">Questions@pintas.com</a>
+									We have received your information and will be in touch with you shortly. You may reach one of our attorneys or paralegals at 800-657-3555 or by email at <a href="mailto:Questions@pintas.com">Questions@pintas.com</a>
 								</span>
 							</font>
 						</span>
