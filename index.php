@@ -7,11 +7,11 @@
  */
 ?>
 <?php ob_start(); ?>
-<?php include "database.php";?>
+<?php include "_database.php";?>
     <!DOCTYPE html>
     <html>
     <head>
-        <?php include "head.php"; ?>
+        <?php include "_head.php"; ?>
     </head>
     <body>
     <!-- Google Tag Manager (noscript) -->
@@ -20,7 +20,7 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- Header -->
-    <?php include "header.php"; ?>
+    <?php include "_header.php"; ?>
     <!-- Main -->
     <main>
         <!-- Slider -->
@@ -56,7 +56,7 @@
             </div>
         </section>
         <!-- Awards -->
-        <?php include 'awards.php' ?>
+        <?php include '_awards.php' ?>
         <!-- Form -->
         <section id="section-form">
             <div class="container">
@@ -76,13 +76,13 @@
 
                                 </ul>
                             </div>
-                            <?php include 'testimonial.php' ?>
+                            <?php include '_testimonial.php' ?>
                         </div>
                         <div class="order-1 order-md-1 order-lg-2 col-lg-6">
                             <div class="services__cases-form">
                                 <h1 class="text-center"> Get Your Own Free Case Evaluation</h1>
                                 <p>After you fill out the form below, you will receive a confirmation email and one of our compassionate female attorneys or paralegals will contact you within 1 business day.<b> Our case evaluations are completely free and confidential.</b></p>
-                                <?php include 'contact.php' ?>
+                                <?php include '_contact.php' ?>
                             </div>
                         </div>
                         
@@ -93,7 +93,7 @@
             </div>
         </section>
         <!-- Talcum -->
-        <?php include "talcum.php"; ?>
+        <?php include "_talcum.php"; ?>
         <!-- Photo -->
         <section class="services__footer">
             <div class="container footer-both">
@@ -118,7 +118,7 @@
         </section>
     </main>
     <!-- Footer -->
-    <?php include 'footer.php' ?>
+    <?php include '_footer.php' ?>
 
     </body>
     </html>

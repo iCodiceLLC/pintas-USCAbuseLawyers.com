@@ -85,6 +85,7 @@
 			}
 </script>
 <script>
+    // Phone number MASK
     $(document).ready(function() {
         var numOnlyLength = 0;
         $("#phoneNumber").keyup(function(e){
@@ -111,48 +112,60 @@
     .warning{border: 2px solid red;}
 </style>
 <script>
+    // Contact Form - Email
     $(document).ready(function() {
-        $.ajaxSetup({cache: false})
+                $.ajaxSetup({cache: false})
 
-        $('#contact-form').submit(function (e) {
-            e.preventDefault();
+                $('#contact-form').submit(function (e) {
+                    e.preventDefault();
 
-            $.blockUI({
-                message: $('#displayBox'),
-                centerX: true,
-                centerY: true,
-                css: {
-                    border: 'none',
-                    backgroundColor: 'none',
-                    opacity: .6,
-                    color: '#fff'
-                }
-            });
-            if (grecaptcha === undefined) {
-                alert('Recaptcha not defined');
-                return;
-            }
+                    $.blockUI({
+                        message: $('#displayBox'),
+                        centerX: true,
+                        centerY: true,
+                        css: {
+                            border: 'none',
+                            backgroundColor: 'none',
+                            opacity: .6,
+                            color: '#fff'
+                        }
+                    });
+                    if (grecaptcha === undefined) {
+                        alert('Recaptcha not defined');
+                        return;
+                    }
 
-            var response = grecaptcha.getResponse();
-            if (!response) {
-                $( '#recaptcha' ).addClass( "error" );
-                $.unblockUI();
-                return;
-            }
-            if(response !== ''){
-                $.ajax({
-                    url: 'php/contact.php',
-                    type: 'POST',
-                    data: $('#contact-form').serialize(),
-                    cache: false,
-                    headers: {'cache-control': 'no-cache'},
-                    success: function (response) {
-                        console.log(response);
+                    var response = grecaptcha.getResponse();
+                    if (!response) {
+                        $( '#recaptcha' ).addClass( "error" );
                         $.unblockUI();
-                        window.location.replace("https://USCAbuseLawyers.com/thank-you/");
+                        return;
+                    }
+                    if(response !== ''){
+                        $.ajax({
+                            url: 'php/contact.php',
+                            type: 'POST',
+                            data: $('#contact-form').serialize(),
+                            cache: false,
+                            headers: {'cache-control': 'no-cache'},
+                            success: function (response) {
+                                console.log(response);
+                                $.unblockUI();
+                                if(response.success) {
+                                    debugger;
+                                    window.location.replace("https://uscabuselawyers.com//thank-you/");
+                                } else {
+                                    // show error
+                                    alert(response.data.message.join());
+                                }
+                            }
+                        });
                     }
                 });
-            }
-        });
-    });
-</script>
+            });
+		</script>
+	</body>
+</html>
+<?php
+	ob_end_flush();
+?>

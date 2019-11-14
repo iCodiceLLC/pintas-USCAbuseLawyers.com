@@ -7,7 +7,7 @@
  */
 ?>
 <?php ob_start(); ?>
-<?php include "../database.php";?>
+<?php include "../_database.php";?>
     <!DOCTYPE html>
     <html>
     <head>
