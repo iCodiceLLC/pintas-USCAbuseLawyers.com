@@ -40,11 +40,15 @@ function handleFormSubmit() {
             $apiResponse = recordToAPI($formResponse);
             $emailResponse = sendEmails($formResponse);
 
+            // TODO: Update DB with results
+            // DBSuccess, APISuccess, EmailSuccess, ErrorMessage
+            $updateResponse = updateDatabaseWithResult($formResponse,$dbResponse,$apiResponse,$emailResponse);
             // send response (we assume that if one of these worked, we can accept it as a success)
             sendJSONResponse($dbResponse->success || $apiResponse->success || $emailResponse->success, array(
                 "dbRecord"      => $dbResponse,
                 "apiRecord"     => $apiResponse,
-                "emailRecord"   => $emailResponse
+                "emailRecord"   => $emailResponse,
+                "updateRecord" => $updateResponse
             ));
         } else {
             // invalid email
@@ -83,22 +87,24 @@ function recordToDatabase($formResponse) {
 
     if($conn) {
         // echo "Connection established.<br />";
-        $sql = "INSERT INTO FormData (FirstName,LastName, Address, PhoneNumber, Email, State, Question, ContactStatus,WebsiteID, createDate, leadAddress) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO FormData (FirstName,LastName, Address, State, PhoneNumber, Email, Question, ContactStatus,WebsiteID, createDate, leadAddress,requestID,formResponse) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $params = array(
-            
             // form fields
             $formResponse->firstName, 
-            $formResponse->lastName, 
-            Constants::FROM_EMAIL["email"], 
-            $formResponse->phone, 
-            $formResponse->email, 
+            $formResponse->lastName,
+            Constants::FROM_EMAIL["email"],
             $formResponse->state,
-            $formResponse->message, 
-            $formResponse->contactBy, 
+            $formResponse->phone, 
+            $formResponse->email,
+            $formResponse->message,
+            $formResponse->contactBy,
             // metadata
             $formResponse->websiteURL,
             $formResponse->today,
-            implode(",", Constants::SUBMIT_EMAILS) 
+            Constants::SUBMIT_EMAILS[0], // maxchar(50) on web
+            // TODO: Add uniqid with response
+            $formResponse->uniqueID,
+            json_encode($formResponse)
         );
         // send sql
         $stmt = sqlsrv_query( $conn, $sql, $params);
@@ -120,14 +126,15 @@ function recordToAPI($formResponse) {
         'LastName' => $formResponse->lastName,
         'Email' => $formResponse->email,
         'Phone' => $formResponse->phone,
-        'State' => $formResponse->state,
+        'ZipCode' => $formResponse->state,
         'Message' => $formResponse->message,
         'utm_Source' => $formResponse->utmSource,
         'utm_Medium' => $formResponse->utmMedium,
         'utm_Campaign' => $formResponse->utmCampaign,
         'utm_Term' => $formResponse->utmTerm,
         'utm_Content' => $formResponse->utmContent,
-        'page_path' => $formResponse->websiteURL
+        'page_path' => $formResponse->websiteURL,
+        'UniqueID' => $formResponse->uniqueID,
     );
 
     // use key 'http' even if you send the request to https://...
@@ -170,6 +177,41 @@ function sendEmails($formResponse) {
     } catch (Exception $e) {
         return new ActionResponse(false, "Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
     }
+}
+function updateDatabaseWithResult($formResponse, $dbResult, $apiResult, $emailResult) {
+    // TODO: Connect DB and update based on uniqueID + email + website
+    global $DB_CONFIG;
+    // save to SQL database
+    $conn = sqlsrv_connect( $DB_CONFIG->url, array(
+        "Database"  => $DB_CONFIG->table,
+        "UID"       => $DB_CONFIG->username,
+        "PWD"       => $DB_CONFIG->password
+    ));
+
+    if($conn) {
+        // echo "Connection established.<br />";
+        $errorResult = json_encode([$dbResult, $apiResult, $emailResult]);
+        $sql = "UPDATE FormData 
+                SET 
+                DBSuccess = ".$dbResult->success.",
+                APISuccess = ".$apiResult->success.",
+                EmailSuccess = ".$emailResult->success .",
+                ErrorMessage = '".$errorResult."'
+                WHERE CONVERT(VARCHAR(MAX), requestID) = '".$formResponse->uniqueID."'";
+//        var_dump($sql);
+        // send sql
+        $stmt = sqlsrv_query( $conn, $sql);
+        if( !isset($stmt) || $stmt === false ) {
+            // sql error
+            return new ActionResponse(false, array("message"=> "SQL STMT Failed", "errors" => sqlsrv_errors()));
+        }
+    }else{
+        // echo "Connection could not be established.<br />";
+        return new ActionResponse(false, "Connection could not be established.");
+    }
+    return new ActionResponse(true, "Succesfully recorded to DB");
+    // UPDATE [dbo].[FormData] SET `db` = $dbResult->success and api and email
+    // WHERE requestID = $formResponse->getUniqueID();
 }
 
 // == Helper Functions ==
@@ -217,6 +259,7 @@ class FormResponse {
     // metadata
     public $websiteURL;
     public $today;
+    public $uniqueID;
     // form fields
     public $firstName;
     public $lastName;
@@ -259,7 +302,7 @@ class FormResponse {
     private function init() {
         $this->assignWebsiteURL();
         // assign date
-        $this->today = date("F j, Y, g:i a");
+        $this->today = date("M j Y g:i a");
     }
     // MARK: Constructors
     function __construct() {
@@ -274,6 +317,7 @@ class FormResponse {
                 call_user_func_array(array($this,$f),$a); 
             } 
         }
+        $this->uniqueID = uniqid($this->email);
     }
     public function __constructWithForm($firstName, $lastName, $email, $phone, $state, $contactBy, $message) {
         // assign fields
@@ -319,6 +363,9 @@ class FormResponse {
         } else {
             return null;
         }
+    }
+    public function getUniqueID() {
+        return $this->uniqueID;
     }
 }
 ?>

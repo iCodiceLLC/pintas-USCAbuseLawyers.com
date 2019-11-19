@@ -9,8 +9,8 @@ class Constants {
         'port' => 5252
     );
     const FROM_EMAIL    = array("email"=>"questions@pintas.com", "name"=> "P&M");
-    const SUBMIT_EMAILS = array("questions@pintas.com");
-    // const SUBMIT_EMAILS = array("pearl@icodice.com");
+    // const SUBMIT_EMAILS = array("questions@pintas.com");
+    const SUBMIT_EMAILS = array("pearl@icodice.com");
     // EMAIL CONTENT
     const CUSTOMER_SUBJECT  = "Thank you for contacting the Pintas & Mullins Law Firm";
     const PINTAS_SUBJECT    = "USCAbuseLawyers.com - Contact Request ([FromCustomer])";
