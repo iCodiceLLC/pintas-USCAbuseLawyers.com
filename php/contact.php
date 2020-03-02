@@ -126,7 +126,7 @@ function recordToAPI($formResponse) {
         'LastName' => $formResponse->lastName,
         'Email' => $formResponse->email,
         'Phone' => $formResponse->phone,
-        'ZipCode' => $formResponse->state,
+        'State' => $formResponse->state,
         'Message' => $formResponse->message,
         'utm_Source' => $formResponse->utmSource,
         'utm_Medium' => $formResponse->utmMedium,
